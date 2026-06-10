@@ -1,0 +1,598 @@
+.docenteContainer {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9edf5 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+} 
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+.mainContent {
+  margin-top: 80px;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.6s ease-out;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== SECCIÓN DE BIENVENIDA ===== */
+.welcomeSection {
+  text-align: center;
+  margin-bottom: 1rem; 
+  max-width: 800px;
+  padding: 0 ;
+}
+
+.titulo {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  color: #1e3c72;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.subtitulo {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.linea {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #4a90e2, #7c4dff, #4a90e2);
+  margin: 1.5rem auto 0;
+  border-radius: 4px;
+  animation: expandLine 0.8s ease-out 0.2s both;
+}
+
+@keyframes expandLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100px;
+    opacity: 1;
+  }
+}
+
+/* ===== CONTENEDOR DE GESTIÓN DE RESERVAS ===== */
+.gestionarReservasContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ===== TARJETA DE GESTIÓN ===== */
+.gestionar {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  width: 250px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  position: relative;
+  overflow: hidden;
+  animation: gestionarAppear 0.5s ease-out;
+}
+
+.gestionar:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.gestionar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.agregarButton {
+  animation: agregarAppear 0.5s ease-out 0.3s both;
+}
+
+@keyframes agregarAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.gestionar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff3e3e, #ff0000);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.gestionar:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.gestionar:hover::before {
+  transform: scaleX(1);
+}
+
+.gestionar:active {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.gestionarTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e3c72;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.gestionarImage {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.gestionar:hover .gestionarImage {
+  transform: scale(1.08);
+}
+
+/* ===== BOTÓN AGREGAR ===== */
+.agregarButton {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #b8e5ff, #168eff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(71, 135, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 1rem;
+  border: 3px solid white;
+  animation: pulse 2.5s infinite, cardAppear 0.5s ease-out 0.3s both;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(36, 51, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(46, 204, 113, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+  }
+}
+
+.agregarButton:hover {
+  transform: scale(1.15) rotate(90deg);
+  background: linear-gradient(135deg, #054dd3, #4355ff);
+  box-shadow: 0 12px 35px rgba(46, 204, 113, 0.4);
+  animation: none;
+}
+
+.agregarButton:active {
+  transform: scale(1.05) rotate(90deg);
+}
+
+.agregarIcon {
+  width: 35px;
+  height: 35px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+.agregarButton:hover .agregarIcon {
+  transform: rotate(90deg);
+}
+
+/* ===== RESPONSIVE - SOLO AJUSTES DE TAMAÑO SIN SCROLL ===== */
+@media (max-width: 1024px) {
+  .gestionarReservasContainer {
+    gap: 2rem;
+  }
+  
+  .gestionar {
+    width: 260px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    margin-top: 70px;
+    padding: 0.5rem;
+  }
+  
+  .welcomeSection {
+    margin-bottom: 0.5rem;
+  }
+  
+  .titulo {
+    font-size: 2rem;
+  }
+  
+  .subtitulo {
+    font-size: 1.1rem;
+  }
+  
+  .gestionarReservasContainer {
+    gap: 1.8rem;
+  }
+  
+  .gestionar {
+    width: 240px;
+    height: 280px;
+    padding: 1.5rem 1rem;
+  }
+  
+  .gestionarTitle {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gestionarImage {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .agregarButton {
+    width: 60px;
+    height: 60px;
+    margin-left: 0.5rem;
+  }
+  
+  .agregarIcon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    margin-top: 65px;
+    padding: 0.3rem;
+  }
+  
+  .titulo {
+    font-size: 1.8rem;
+  }
+  
+  .subtitulo {
+    font-size: 1rem;
+  }
+
+   .linea {
+    width: 80px;
+    height: 3px;
+  }
+  
+  .gestionarReservasContainer {
+    gap: 1.2rem;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .gestionar {
+    width: 100%;
+    max-width: 260px;
+    height: 260px;
+  }
+  
+  .agregarButton {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .gestionarReservasContainer {
+    max-width: 1400px;
+    gap: 3rem;
+  }
+  
+  .gestionar {
+    width: 300px;
+    height: 340px;
+  }
+  
+  .gestionarImage {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .agregarButton {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .agregarIcon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ===== NOTIFICACIONES ===== */
+
+.contenedorNotificacion {
+  position: absolute;
+  top: 20px;
+  right: 210px;
+  z-index: 1000;
+}
+
+.notificacionIcon {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.notificacionIcon:hover {
+  transform: scale(1.1);
+}
+
+.badgeNotificacion {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* PANEL */
+
+.notificacionesPanel {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 360px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  animation: fadePanel 0.25s ease;
+}
+
+@keyframes fadePanel {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HEADER */
+
+.notificacionesHeader {
+  margin-bottom: 18px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.notificacionesHeader h3 {
+  margin: 0;
+  color: #1e3c72;
+  font-size: 20px;
+}
+
+/* VACÍO */
+
+.sinNotificaciones {
+  text-align: center;
+  color: #6b7280;
+  padding: 30px 10px;
+  font-size: 14px;
+}
+
+/* CARD */
+
+.notificacionCard {
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+
+.notificacionCard:hover {
+  transform: translateY(-2px);
+}
+
+/* AJUSTE */
+
+.ajuste {
+  background: #eff6ff;
+  border-left: 5px solid #2563eb;
+}
+
+/* CANCELADA */
+
+.cancelada {
+  background: #fef2f2;
+  border-left: 5px solid #dc2626;
+}
+
+/* TOP */
+
+.notificacionTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tipoNotificacion {
+  font-weight: bold;
+  font-size: 14px;
+  color: #111827;
+}
+
+/* MENSAJE */
+
+.mensajeNotificacion {
+  margin-top: 10px;
+  margin-bottom: 14px;
+  font-size: 15px;
+  color: #111827;
+  line-height: 1.4;
+}
+
+/* DETALLES */
+
+.detalleNotificacion {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+
+.detalleNotificacion small {
+  color: #374151;
+  font-size: 13px;
+}
+
+/* FECHAS */
+
+.fechasNotificacion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.fechasNotificacion small {
+  color: #4b5563;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ESTADO */
+
+.estadoCancelada {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #dc2626;
+  font-weight: bold;
+}
+
+/* BOTÓN */
+
+.btnLeida {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+  );
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btnLeida:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37,99,235,0.3);
+}
+
+/* SCROLL */
+
+.notificacionesPanel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.notificacionesPanel::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.notificacionesPanel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 480px) {
+
+  .contenedorNotificacion {
+    right: 80px;
+  }
+
+  .notificacionesPanel {
+    width: 300px;
+    right: -20px;
+  }
+
+}
